@@ -180,9 +180,33 @@ const revenue = [
   { month: 'Dec', revenue: 4800 },
 ];
 
+const reviews = [
+  {
+    nama: 'elsa amelia lase',
+    review: 'ini sih enak kata gue teh'
+  },
+  {
+    nama: 'eugenie',
+    review: 'ini sih enak kata gue teh'
+  },
+  {
+    nama: 'clara aulia ',
+    review: 'ini sih enak kata gue teh'
+  },
+  {
+    nama: 'stephanie',
+    review: 'ini sih enak kata gue teh'
+  },
+  {
+    nama: 'lulu landak',
+    review: 'ini sih enak kata gue teh'
+  }
+]
+
 module.exports = {
   users,
   customers,
   invoices,
   revenue,
+  reviews,
 };

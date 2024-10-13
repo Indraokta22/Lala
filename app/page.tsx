@@ -1,48 +1,334 @@
-import AcmeLogo from '@/app/ui/acme-logo';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
-import styles from '@/app/ui/home.module.css';
+'use client';
+import Header from '@/app/header';
+import Footer from './footer';
+import React from 'react';
+import { useEffect, useRef, useState } from 'react';
+import styles from './ui/home.module.css';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import Image from 'next/image';
+import { reviews } from './lib/placeholder-data';
 
+export default function Home() {
+  const sliderRef = useRef<HTMLDivElement | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const imageCount = 4; // Jumlah gambar dalam slider
 
-export default function Page() {
+  useEffect(() => {
+    const contentElements = document.querySelectorAll(`.${styles.content}`);
+    const imageElements = document.querySelectorAll(`.${styles.image}`);
+
+    contentElements.forEach((el) => el.classList.add(styles.active));
+    imageElements.forEach((el) => el.classList.add(styles.active));
+  }, []);
+
+  const changeSlide = (index: number) => {
+    if (sliderRef.current) {
+      const slideWidth = sliderRef.current.clientWidth; // Ambil lebar slider
+      sliderRef.current.style.transform = `translateX(-${
+        index * slideWidth
+      }px)`;
+      setCurrentIndex(index); // Update current index
+    }
+  };
+
+  // Fungsi untuk pindah ke gambar sebelumnya
+  const handlePrev = () => {
+    const newIndex = currentIndex === 0 ? imageCount - 1 : currentIndex - 1;
+    changeSlide(newIndex);
+  };
+
+  // Fungsi untuk pindah ke gambar berikutnya
+  const handleNext = () => {
+    const newIndex = (currentIndex + 1) % imageCount;
+    changeSlide(newIndex);
+  };
+
   return (
-    <main className="flex min-h-screen flex-col p-6">
-      <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52">
-        <AcmeLogo />
-      </div>
-      <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
-        <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
-        {/* <div className={styles.shape} />;
-        <div
-  className="h-0 w-0 border-b-[30px] border-l-[20px] border-r-[20px] border-b-black border-l-transparent border-r-transparent"
-/> */}
-          <p className={`text-xl text-gray-800 md:text-3xl md:leading-normal`}>
-            <strong>Welcome to Acme.</strong> This is the example for the{' '}
-            <a href="https://nextjs.org/learn/" className="text-blue-500">
-              Next.js Learn Course
+    <main>
+      <Header />
+      <main>
+        <div className="relative">
+          <video
+            className="h-auto w-full object-cover"
+            autoPlay
+            muted
+            loop
+            src="/header.mp4"
+          />
+        </div>
+        <div className={styles.location}>
+          <h1>Welcome to Kopion!</h1>
+        </div>
+        <div className={styles.gambar}>
+          <div className={styles.row}>
+            <img
+              className={styles.image}
+              src="/gambar2.jpg"
+              alt="Image 1"
+              width="100%"
+              height="100%"
+            />
+          </div>
+          <div className={styles.content}>
+            <h1>Welcome to Kopion!</h1>
+            <p>Your perfect coffee experience starts here.</p>
+          </div>
+          <div className={styles.content}>
+            <h1>Welcome to Kopion!</h1>
+            <p>Your perfect coffee experience starts here.</p>
+          </div>
+          <div className={styles.row}>
+            <img
+              className={styles.image}
+              src="/gambar2.jpg"
+              alt="Image 4"
+              width="100%"
+              height="100%"
+            />
+          </div>
+        </div>
+        <div className={styles.box}>
+          <div className={styles.container}></div>
+          <div className={styles.pesan}>
+            <h1>ORDER ONLINE</h1>
+            <p>Pick Up Your Favorite Menu</p>
+            <p>Not feel like cooking today? We got you covered - order now!</p>
+            <a href="pesan.php" className={styles.buttonpesan}>
+              ORDER
             </a>
-            , brought to you by Vercel.
-
+          </div>
+        </div>
+        <div className={styles.slide}>
+          <div className={styles.slides} ref={sliderRef}>
+            <div className={styles.slider}>
+              <img src="/slide1.jpg" alt="slide1" />
+              <img src="/slide2.jpg" alt="slide2" />
+              <img src="/slide3.jpg" alt="slide3" />
+              <img src="/slide4.jpg" alt="slide4" />
+            </div>
+          </div>
+          <div className={styles.arrowLeft} onClick={handlePrev}>
+            <FaArrowLeft />
+          </div>
+          <div className={styles.arrowRight} onClick={handleNext}>
+            <FaArrowRight />
+          </div>
+        </div>
+        <div className="mb-10 flex flex-col items-center justify-center text-center">
+          <h1 className="mb-5 mt-10 text-4xl font-bold">
+            A Historic Gathering House
+          </h1>
+          <p>
+            Backatown Coffee Parlour, located at the very site of old
+            Storyville,
           </p>
-          <Link
-            href="/login"
-            className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
-          >
-            <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />
-          </Link>
+          <p>
+            embodies the aura of the time where you could hear the sounds of
+            Jelly
+          </p>
+          <p>
+            Roll Morton, Louis Armstrong, and King Oliver and meet folks from
+            all
+          </p>
+          <p>
+            walks of life. We strive to present Backatown as an authentic New
+          </p>
+          <p>
+            Orleans gathering space that helps cultivate our neighborhoods
+            through
+          </p>
+          <p>the fostering of ideas and conversations.</p>
         </div>
-        <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
-          {/* Add Hero Images Here */}
-          <Image
-        src="/hero-desktop.png"
-        width={1000}
-        height={760}
-        className="hidden md:block"
-        alt="Screenshots of the dashboard project showing desktop version"
-      />
+        <div className="flex">
+          <section className="grid grid-cols-5">
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu1.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu2.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu6.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-2 row-span-2 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu4.jpg"
+                alt="Image 1"
+                width={600}
+                height={600}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu5.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu3.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu7.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-2 row-span-2 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu9.jpg"
+                alt="Image 1"
+                width={600}
+                height={600}
+              />
+            </div>
+            <div className="felx-col hover:scale-110x col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10">
+              <Image
+                src="/menu/menu10.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu11.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu12.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu13.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu17.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu16.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu19.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-2 row-span-3 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu3.jpg"
+                alt="Image 1"
+                width={600}
+                height={600}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu20.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu6.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu10.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu8.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+            <div className="felx-col col-span-1 row-span-1 flex transform transition-transform duration-300 hover:z-10 hover:scale-110">
+              <Image
+                src="/menu/menu11.jpg"
+                alt="Image 1"
+                width={300}
+                height={300}
+              />
+            </div>
+          </section>
         </div>
-      </div>
+
+        {/* <div className='w-3/4 m-auto bg-gray-200'>
+        <div className='mt-10'>
+          {reviews.map((d) =>(
+            <div className='h-[450px] rounded-xl'>
+              <div className='flex flex-col justify-center items-center gap-4 p-4'>
+                <p className='text-xl font-semibold'>{d.nama}</p>
+                <p>{d.review}</p>
+                <button className='bg-indigo-500 text-white text-lg px-6'>Read More</button>
+              </div>
+            </div>
+            
+          ))}
+        </div>
+        </div> */}
+
+        <Footer />
+      </main>
     </main>
   );
 }
