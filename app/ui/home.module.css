@@ -132,7 +132,7 @@
 
 .pesan h1 {
   font-size: 2.5rem;
-  margin-top: 5rem;
+  margin-top: 3rem;
   margin-bottom: 1rem;
   color: black;
   text-align: center;
@@ -247,18 +247,18 @@
 }
 
 /* footer */
-.footerContainer{
+.footerContainer {
   width: 100%;
   padding: 70px 30px 20px;
   background-color: black;
 }
 
-.icon{
+.icon {
   display: flex;
   justify-content: center;
 }
 
-.icon a{
+.icon a {
   text-decoration: none;
   padding: 10px;
   background-color: white;
@@ -266,8 +266,28 @@
   border-radius: 50%;
 }
 
-.icon a:hover{
+.icon a:hover {
   background-color: #111;
   transition: 0.5s;
   color: #fff;
+}
+
+.maps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--bg);
+  height: 350px;
+}
+
+.maps2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: black; /* Bisa disesuaikan sesuai tema */
+  padding: 20px;
+  text-align: center;
+  flex: 1;
 }

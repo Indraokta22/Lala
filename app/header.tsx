@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './ui/home.module.css';
+import Link from 'next/link';
 
 export default function Header() {
   return (
@@ -10,7 +11,7 @@ export default function Header() {
         </h1>
         <div className={styles.navbarNav}>
           <a href="/">Home</a>
-          <a href="/about">About Us</a>
+          <Link href='/about'>About</Link>
           <a href="/menu">Menu</a>
           <a
             href="https://wa.me/6282299602181/?text=Hello"
@@ -81,7 +82,7 @@ export default function Header() {
               <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
             </svg>
           </a>
-          <a href="#" id={styles.person}>
+          <a href="/login" id={styles.person}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
