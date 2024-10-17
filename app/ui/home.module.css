@@ -110,6 +110,7 @@
 #tiktok,
 #maps,
 #cart3,
+#cek,
 #person {
   display: inline-block;
   position: relative;
@@ -120,7 +121,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40vh;
+  height: 27vh;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -132,8 +133,7 @@
 
 .pesan h1 {
   font-size: 2.5rem;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
   color: black;
   text-align: center;
 }
@@ -290,4 +290,27 @@
   padding: 20px;
   text-align: center;
   flex: 1;
+}
+
+/* order */
+.container{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  overflow: hidden;
+  gap: 20px;
+  padding: 20px;
+}
+
+.griditem {
+  position: relative;
+  overflow: hidden;
+  padding: 10px;
+  border: 1px solid #0000009d;
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  margin-left: 20px; /* Tambahkan margin kiri */
 }
