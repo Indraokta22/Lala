@@ -8,6 +8,7 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import Image from 'next/image';
 import { reviews } from './lib/placeholder-data';
 
+
 export default function Home() {
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,9 +25,8 @@ export default function Home() {
   const changeSlide = (index: number) => {
     if (sliderRef.current) {
       const slideWidth = sliderRef.current.clientWidth; // Ambil lebar slider
-      sliderRef.current.style.transform = `translateX(-${
-        index * slideWidth
-      }px)`;
+      sliderRef.current.style.transform = `translateX(-${index * slideWidth
+        }px)`;
       setCurrentIndex(index); // Update current index
     }
   };

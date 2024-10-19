@@ -74,18 +74,18 @@
   color: var(--primary);
 }
 
-.navbarNav a {
+.navbar a {
   color: #fff;
-  display: inline-block;
+  display: flex;
   font-size: 1.3rem;
   margin: 0 1rem;
 }
 
-.navbarNav a:hover {
+.navbar a:hover {
   color: var(--primary);
 }
 
-.navbarNav a::after {
+.navbar a::after {
   content: '';
   display: block;
   padding-bottom: 0.5rem;
@@ -94,7 +94,7 @@
   transition: 0.2s linear;
 }
 
-.navbarNav a:hover::after {
+.navbar a:hover::after {
   transform: scaleX(0.5);
 }
 
@@ -109,7 +109,7 @@
 #instagram,
 #tiktok,
 #maps,
-#cart3,
+/* #cart3, */
 #cek,
 #person {
   display: inline-block;

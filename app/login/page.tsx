@@ -30,7 +30,7 @@ export default function LoginPage() {
 
             <div className="w-full">
               <label className="block text-sm font-medium text-gray-700">
-                Username
+                E-mail
               </label>
               <div className="relative mt-1">
                 <input
@@ -38,7 +38,7 @@ export default function LoginPage() {
                   id="email"
                   type="email"
                   name="email"
-                  placeholder="Username"
+                  placeholder="Email"
                   required
                 />
               </div>
@@ -103,7 +103,7 @@ function LoginButton() {
   const { pending } = useFormStatus();
   return (
     <Button
-      className="w-full rounded-md bg-gray-800 py-2 text-center text-center text-white"
+      className="w-full rounded-md bg-gray-800 py-2 text-center text-white"
       aria-disabled={pending}
     >
       Log in
